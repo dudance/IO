@@ -27,7 +27,7 @@ public class DataProvider {
 
 
     public Map<String, Currency> mapCurriencies() throws Exception {
-        Map<String, Currency> currencyMap = new HashMap<String, Currency>();
+        Map<String, Currency> currencyMap = new HashMap<>();
         try {
             NodeList list = downloadCurrencies();
             for (int temp = 0; temp < list.getLength(); temp++) {
