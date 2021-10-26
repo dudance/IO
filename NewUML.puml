@@ -1,0 +1,48 @@
+@startuml
+class Currency {
+- String name
+- int converter
+- String currencyCode
+- double exchangeRate
++ String toString()
++ String getName()
++ int getConverter()
++ double getExchangeRate()
+}
+class ExchangeCalculator {
+- Currency baseCurrency
+- Currency targetCurrency
+- double baseValueOfCurrency
+- double targetValueOfCurrency
++ void calculateTargetValue()
++ void printResults()
++ {static} double roundValue(double)
+}
+class DataProvider {
+- NodeList downloadCurrencies()
++ Map<String,Currency> mapCurriencies()
+}
+class Main {
++ {static} void main(String[])
+}
+class CurrencyRepository {
+- Map<String,Currency> currencyMap
+- {static} CurrencyRepository currencyRepository
++ {static} CurrencyRepository getInstance()
++ Map<String,Currency> getCurrencyMap()
++ void printCurrencies()
++ boolean isCurrencyCodeValid(String)
+}
+class UserInputManager {
++ {static} String[] getUserInput()
++ {static} void validateUserData(String[])
+}
+
+Currency "n" --* CurrencyRepository
+Currency "2" --* ExchangeCalculator
+CurrencyRepository ..> DataProvider : <<create>>
+Main ..> CurrencyRepository : <<create>>
+Main ..> ExchangeCalculator : <<create>>
+Main ..> UserInputManager
+
+@enduml
