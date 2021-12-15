@@ -1,0 +1,45 @@
+@startuml
+class Utils {
++ {static} String wordFormatting(String)
++ {static} void saveToFile(List<Unit>)
++ {static} List<Unit> loadFromFile()
++ {static} void addTestingData(UnitFactoryProxy)
+}
+interface Proxy {
+~ void addPerson(String,double,double)
+}
+class UnitFactoryProxy {
+- Proxy realFactory
++ void addPerson(String,double,double)
+}
+class UnitFactory {
+- List<Unit> list
++ List<Unit> getList()
++ void setList(List<Unit>)
++ {static} Unit getUnit(List<Unit>,String)
++ {static} void setChildrenOrCoordinates(String[],Unit,double,double)
++ void addPerson(String,double,double)
++ void printFactory()
+}
+class Unit {
+- double x
+- double y
+- String partOfName
+- List<Unit> children
++ String getPartOfName()
++ void addChildren(String,double,double)
++ void displayUnit(String)
++ void setCoordinates(double,double)
+}
+class Main {
++ {static} void main(String[])
+}
+
+
+Proxy <|-- UnitFactoryProxy : implements
+Proxy <|-- UnitFactory : implements
+UnitFactoryProxy "1" *-- "1" UnitFactory
+UnitFactory "1" *-- "n" Unit
+Main ..> Utils : use
+Main ..> Proxy : create
+@enduml
