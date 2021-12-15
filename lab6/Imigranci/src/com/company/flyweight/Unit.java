@@ -1,5 +1,7 @@
 package com.company.flyweight;
 
+import com.company.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +19,11 @@ public class Unit {
         return partOfName;
     }
 
-    public void addChildren(String partOfName, double x, double y) {
-        String[] values = partOfName.split(" ", 2);
+    public void addChild(String partsOfName, double x, double y) {
 
-        Unit unit = UnitFactory.getUnit(this.children, values[0]);
-        UnitFactory.setChildrenOrCoordinates(values, unit, x, y);
+        String[] parts = Utils.getParentAndChildren(partsOfName);
+        Unit parent = UnitFactory.getUnit(this.children, parts[0]);
+        UnitFactory.addChildren(parts, parent, x, y);
     }
 
     public void displayUnit(String prefix) {

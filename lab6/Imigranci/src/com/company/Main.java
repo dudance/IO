@@ -5,12 +5,12 @@ import com.company.flyweight.UnitFactory;
 import com.company.proxy.Proxy;
 import com.company.proxy.UnitFactoryProxy;
 import com.company.utils.Utils;
-import java.io.IOException;
+
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Proxy factory = new UnitFactory();
         Proxy proxyFactory = new UnitFactoryProxy(factory);
@@ -40,7 +40,7 @@ public class Main {
                     x = Double.parseDouble(scanner.nextLine());
                     System.out.println("Wspolrzedna y");
                     y = Double.parseDouble(scanner.nextLine());
-                    proxyFactory.addPerson(name, x, y);
+                    proxyFactory.addName(name, x, y);
                     break;
                 case 2:
                     ((UnitFactory) factory).setList(Utils.loadFromFile());

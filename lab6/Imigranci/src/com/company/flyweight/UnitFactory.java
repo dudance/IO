@@ -1,6 +1,7 @@
 package com.company.flyweight;
 
 import com.company.proxy.Proxy;
+import com.company.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,19 +29,19 @@ public class UnitFactory implements Proxy {
         return newUnit;
     }
 
-    public static void setChildrenOrCoordinates(String[] values, Unit unit, double x, double y) {
-        if (values.length > 1) {
-            unit.addChildren(values[1], x, y);
+    public static void addChildren(String[] partsOfName, Unit parent, double x, double y) {
+        if (partsOfName.length > 1) {
+            parent.addChild(partsOfName[1], x, y);
         } else {
-            unit.setCoordinates(x, y);
+            parent.setCoordinates(x, y);
         }
     }
 
-    public void addPerson(String value, double x, double y) {
-        String[] values = value.split(" ", 2);
-        Unit unit = getUnit(list, values[0]);
+    public void addName(String fullName, double x, double y) {
+        String[] parts = Utils.getParentAndChildren(fullName);
+        Unit parent = getUnit(list, parts[0]);
 
-        setChildrenOrCoordinates(values, unit, x, y);
+        addChildren(parts, parent, x, y);
     }
 
     public void printFactory() {
@@ -48,6 +49,5 @@ public class UnitFactory implements Proxy {
             u.displayUnit("");
         }
     }
-
 
 }

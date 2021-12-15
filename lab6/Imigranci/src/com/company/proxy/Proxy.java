@@ -1,5 +1,5 @@
 package com.company.proxy;
 
 public interface Proxy {
-    void addPerson(String value, double x, double y);
+    void addName(String partOfName, double x, double y);
 }
